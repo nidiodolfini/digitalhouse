@@ -1,0 +1,15 @@
+--- 
+- hosts: development
+  remote_user: root
+  
+  tasks:
+  - nome: “instalar Apache”
+    shell: /usr/bin/apt install apache2 -y
+    register: apache
+
+  - nome: “apache2 output”
+    debug: msg=“{{ apache.stdout }}”
+ 
+  - nome: “Restart Apache service”
+    shell: /usr/bin/systemctl restart apache2
+    register: apache-restart
